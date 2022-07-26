@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App SSR</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container p-4">
+      <h1 class="text-center">Aplicación SSR</h1>
+
+      <div class="d-flex justify-content-between">
+        <div>
+          <p>Cantidad total de Apuestas: <%= total %></p>
+        </div>
+      </div>
+
+      <table
+        id="table"
+        class="table table-bordered table-striped text-center my-2 table-hover"
+      >
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">Codigo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Apostador</th>
+            <th scope="col">Evento</th>
+            <th scope="col">Valor</th>
+            <th scope="col">Estado</th>
+            <th scope="col">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% apuestas.forEach((apuesta)=>{%>
+          <tr>
+            <td><%= apuesta.codigo%></td>
+            <td><%= apuesta.fecha%></td>
+            <td><%= apuesta.apostador%></td>
+            <td><%= apuesta.evento%></td>
+            <td><%= apuesta.valor%></td>
+            <td><%= apuesta.estado%></td>
+            <td>
+              <a
+                href="/api/v1/examen/ganador/<%= apuesta.codigo %>"
+                class="btn btn-outline-success"
+                ><strong>Ganador</strong></a
+              >
+
+              <a
+                href="/api/v1/examen/perdedor/<%= apuesta.codigo%>"
+                class="btn btn-outline-danger"
+              >
+                <strong>Perdedor</strong></a
+              >
+            </td>
+          </tr>
+          <% })%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
